@@ -6,7 +6,7 @@
 #    By: psmolich <psmolich@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/30 14:44:28 by psmolich          #+#    #+#              #
-#    Updated: 2025/08/30 15:13:31 by psmolich         ###   ########.fr        #
+#    Updated: 2025/08/30 16:53:34 by psmolich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,22 @@ CHECKER := checker
 
 LIB := libft/libft.a
 
-SRCS_PUSHSWAP := push_swap.c \
-					arguments.c \
-					instructions.c \
-					sorting.c \
-					radix.c
+SRCS_PUSHSWAP := MANDATORY/push_swap.c \
+					MANDATORY/arguments.c \
+					MANDATORY/instructions.c \
+					MANDATORY/sorting.c \
+					MANDATORY/LIST/ft_lstaddback.c \
+					MANDATORY/LIST/ft_lstaddfront.c \
+					MANDATORY/LIST/ft_lstfree.c \
+					MANDATORY/LIST/ft_lstissorted_as.c \
+					MANDATORY/LIST/ft_lstissorted_des.c \
+					MANDATORY/LIST/ft_lstlargest.c \
+					MANDATORY/LIST/ft_lstlast.c \
+					MANDATORY/LIST/ft_lstnew.c \
+					MANDATORY/LIST/ft_lstprint.c \
+					MANDATORY/LIST/ft_lstsize.c \
+					MANDATORY/LIST/ft_lstsmallest.c
+
 
 SRCS_CHECKER := BONUS/checker.c \
 					BONUS/arguments.c \

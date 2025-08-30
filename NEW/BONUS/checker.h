@@ -6,7 +6,7 @@
 /*   By: psmolich <psmolich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 14:44:37 by psmolich          #+#    #+#             */
-/*   Updated: 2025/08/30 15:11:04 by psmolich         ###   ########.fr       */
+/*   Updated: 2025/08/30 15:49:24 by psmolich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_list
 
 int		apply_instr(char *instr, t_list **stack_a, t_list **stack_b);
 int		record_arg(int ac, char **av, t_list **stack_a);
+
 t_list	*ft_lstnew(int content);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);
