@@ -6,7 +6,7 @@
 #    By: psmolich <psmolich@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/30 14:44:28 by psmolich          #+#    #+#              #
-#    Updated: 2025/08/30 16:53:34 by psmolich         ###   ########.fr        #
+#    Updated: 2025/08/30 21:12:56 by psmolich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,3 +68,7 @@ fclean: clean
 	make fclean -C libft/
 
 re: fclean all
+
+rep:
+	rm -f push_swap
+	make basic
