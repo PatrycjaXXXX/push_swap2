@@ -6,7 +6,7 @@
 /*   By: psmolich <psmolich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 14:44:43 by psmolich          #+#    #+#             */
-/*   Updated: 2025/08/30 20:24:34 by psmolich         ###   ########.fr       */
+/*   Updated: 2025/08/31 05:02:22 by psmolich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int		ft_lstissorted_des(t_list *lst);
 t_list	*ft_lstlargest(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstnew(int content, int index_start, int index_end, int moves);
+int	ft_lstpos_e(t_list *lst, t_list *find);
+int	ft_lstpos_s(t_list *lst, t_list *find);
 void	ft_lstprint(t_list *lst, char c);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstsmallest(t_list *lst);

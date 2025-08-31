@@ -21,13 +21,10 @@ static void	optimize_instr(char **instr)
 {
 	ft_strdel(instr, "pb\npa\n");
 	ft_strdel(instr, "pa\npb\n");
-
 	ft_strrep(instr, "sa\nsb\n", "ss\n");
 	ft_strrep(instr, "sb\nsa\n", "ss\n");
-
 	ft_strrep(instr, "ra\nrb\n", "rr\n");
 	ft_strrep(instr, "rb\nra\n", "rr\n");
-	
 	ft_strrep(instr, "rra\nrrb\n", "rrr\n");
 	ft_strrep(instr, "rrb\nrra\n", "rrr\n");
 }

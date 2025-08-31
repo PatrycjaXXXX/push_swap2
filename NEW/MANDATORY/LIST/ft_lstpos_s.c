@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_lstpos_s.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psmolich <psmolich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/23 17:57:03 by psmolich          #+#    #+#             */
-/*   Updated: 2025/08/04 11:26:03 by psmolich         ###   ########.fr       */
+/*   Created: 2025/08/31 04:57:03 by psmolich          #+#    #+#             */
+/*   Updated: 2025/08/31 05:14:54 by psmolich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lst_int.h"
+#include "../push_swap.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+int	ft_lstpos_s(t_list *lst, t_list *find)
 {
-	new->next = *lst;
-	*lst = new;
+	int	position;
+
+	position = 0;
+	while (lst != find)
+	{
+		position++;
+		lst = lst->next;
+	}
+	return (position);
 }

@@ -6,7 +6,7 @@
 #    By: psmolich <psmolich@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/30 14:44:28 by psmolich          #+#    #+#              #
-#    Updated: 2025/08/30 21:12:56 by psmolich         ###   ########.fr        #
+#    Updated: 2025/08/31 05:03:50 by psmolich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ SRCS_PUSHSWAP := MANDATORY/push_swap.c \
 					MANDATORY/LIST/ft_lstlargest.c \
 					MANDATORY/LIST/ft_lstlast.c \
 					MANDATORY/LIST/ft_lstnew.c \
+					MANDATORY/LIST/ft_lstpos_e.c \
+					MANDATORY/LIST/ft_lstpos_s.c \
 					MANDATORY/LIST/ft_lstprint.c \
 					MANDATORY/LIST/ft_lstsize.c \
 					MANDATORY/LIST/ft_lstsmallest.c

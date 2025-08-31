@@ -6,11 +6,12 @@
 /*   By: psmolich <psmolich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 13:23:56 by psmolich          #+#    #+#             */
-/*   Updated: 2025/08/21 15:01:16 by psmolich         ###   ########.fr       */
+/*   Updated: 2025/08/28 18:48:18 by psmolich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <unistd.h>
 #define FAIL -1
 #define SUCCESS 1
 
@@ -22,8 +23,8 @@ static int	ft_sort_lstint(t_list **stack_a, t_list **stack_b)
 	if (ft_lst_issorted_des(*stack_a) == SUCCESS)
 		return (des_to_as(stack_a, stack_b, size_a));
 	else if (size_a <= 10)
-		ft_selectionsort(stack_a, stack_b, size_a);
-	// ft_bubblesort(stack_a, stack_b);
+		// ft_selectionsort(stack_a, stack_b, size_a);
+		ft_bubblesort(stack_a, stack_b);
 	else
 		ft_radixsort(stack_a, stack_b, size_a);
 	return (SUCCESS);

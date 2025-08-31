@@ -6,7 +6,7 @@
 /*   By: psmolich <psmolich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 14:44:40 by psmolich          #+#    #+#             */
-/*   Updated: 2025/08/30 20:25:02 by psmolich         ###   ########.fr       */
+/*   Updated: 2025/08/31 05:30:40 by psmolich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ static int	ft_sort(t_list **a, t_list **b)
 	normalize_data(a, b, size_a);
 	if (ft_lstissorted_des(*a) == SUCCESS)
 		return (des_to_as(a, b, size_a));
-	else if (size_a <= 5)
-		ft_selectionsort(a, b, size_a);
+	// else if (size_a <= 5)
+	// 	ft_selectionsort(a, b, size_a);
 	else
 		ft_radixsort(a, b, size_a);
 	return (SUCCESS);

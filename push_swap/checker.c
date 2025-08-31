@@ -6,7 +6,7 @@
 /*   By: psmolich <psmolich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 14:33:59 by psmolich          #+#    #+#             */
-/*   Updated: 2025/08/28 16:45:42 by psmolich         ###   ########.fr       */
+/*   Updated: 2025/08/28 17:23:50 by psmolich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ static int	get_instr(t_list **stack_a, t_list **stack_b)
 	{
 		if (apply_instr(instr, stack_a, stack_b) == FAIL)
 			return (free(instr), cleanup(stack_a, stack_b), FAIL);
-		// ft_lstprint(*stack_a);
-		// ft_lstprint(*stack_b);
 		free(instr);
 		instr = get_next_line(0);
 	}

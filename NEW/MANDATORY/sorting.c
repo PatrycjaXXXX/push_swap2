@@ -6,7 +6,7 @@
 /*   By: psmolich <psmolich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 15:59:47 by psmolich          #+#    #+#             */
-/*   Updated: 2025/08/30 21:17:46 by psmolich         ###   ########.fr       */
+/*   Updated: 2025/08/31 05:32:20 by psmolich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 
 static int	ft_move(char *move, t_list **a, t_list **b)
 {
-	// ft_printf("A: ");
-	// ft_lstprint(*a, 'c');
-	// ft_printf("B: ");
-	// ft_lstprint(*b, 'c');
+	ft_printf("A: ");
+	if (a)
+		ft_lstprint(*a, 'c');
+	ft_printf("B: ");
+	if (b)
+		ft_lstprint(*b, 'c');
 	ft_printf("%s", move);
 	return (apply_instr(move, a, b));
 }
@@ -73,19 +75,36 @@ int	ft_selectionsort(t_list **a, t_list **b, int size_a)
 	return (SUCCESS);
 }
 
-// static int	ft_still_bittomove(t_list *stack_a, int bit)
-// {
-// 	int	count;
+static t_list	*ft_brokenchain(t_list *stack_a, int bit)
+{
+	t_list	*wrong;
 
-// 	count = 0;
-// 	while (stack_a)
-// 	{
-// 		if (!((stack_a->content >> bit) & 1))
-// 			count++;
-// 		stack_a = stack_a->next;
-// 	}
-// 	return (count);
-// }
+	wrong = stack_a;
+	while (wrong)
+	{
+		if (!((wrong->content >> bit) & 1))
+			return (wrong);
+		wrong = wrong->next;
+	}
+	return (NULL);
+}
+
+static void	ft_moveup(t_list **stack, t_list *wrong)
+{
+	int		position_r;
+	int		position_rr;
+	char	*move;
+
+	position_r = ft_lstpos_s(*stack, wrong);
+	position_rr = ft_lstpos_e(*stack, wrong);
+	ft_printf("%i x ra    %i x rra\n", position_r, position_rr);
+	if (position_r < position_rr)
+		move = "ra\n";
+	else
+		move ="rra\n";
+	while ((*stack) != wrong)
+		ft_move(move, stack, NULL);
+}
 
 int	ft_radixsort(t_list **a, t_list **b, int size_a)
 {
@@ -100,14 +119,18 @@ int	ft_radixsort(t_list **a, t_list **b, int size_a)
 		i = 0;
 		while (i < size_a)
 		{
-			if ((((*a)->content >> bit) & 1) == 0)
-				ft_move("pb\n", a, b);
-			else
-				ft_move("ra\n", a, b);
+			if (ft_brokenchain(*a, bit))
+			{
+				if ((((*a)->content >> bit) & 1) == 0)
+					ft_move("pb\n", a, b);
+				else
+					ft_moveup(a, ft_brokenchain(*a, bit));
+			}
 			i++;
 		}
 		while (*b)
 			ft_move("pa\n", a, b);
+		ft_printf("bit checked: %i\n", bit);
 		bit++;
 	}
 	return (SUCCESS);
