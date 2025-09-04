@@ -1,27 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_absint.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psmolich <psmolich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/30 15:56:44 by psmolich          #+#    #+#             */
-/*   Updated: 2025/08/31 11:35:12 by psmolich         ###   ########.fr       */
+/*   Created: 2025/09/04 18:41:31 by psmolich          #+#    #+#             */
+/*   Updated: 2025/09/04 18:42:01 by psmolich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
-#include <stdlib.h>
-
-t_list	*ft_lstnew(int content, int index)
+unsigned int	ft_absint(int value)
 {
-	t_list	*lstnew;
-
-	lstnew = malloc(sizeof(t_list));
-	if (!lstnew)
-		return (NULL);
-	lstnew->content = content;
-	lstnew->index = index;
-	lstnew->next = NULL;
-	return (lstnew);
+	return (((value < 0) * (-value)) + ((value >= 0) * value));
 }

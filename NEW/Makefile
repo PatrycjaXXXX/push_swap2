@@ -6,12 +6,12 @@
 #    By: psmolich <psmolich@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/30 14:44:28 by psmolich          #+#    #+#              #
-#    Updated: 2025/08/31 05:03:50 by psmolich         ###   ########.fr        #
+#    Updated: 2025/09/04 20:03:42 by psmolich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# .SILENT:
-.PHONY: all basic bonus clean fclean re
+.SILENT:
+.PHONY: all basic bonus clean effi fclean re
 .DEFAULT_GOAL := basic
 
 PUSHSWAP := push_swap
@@ -23,6 +23,8 @@ SRCS_PUSHSWAP := MANDATORY/push_swap.c \
 					MANDATORY/arguments.c \
 					MANDATORY/instructions.c \
 					MANDATORY/sorting.c \
+					MANDATORY/movetop.c \
+					MANDATORY/calculating.c \
 					MANDATORY/LIST/ft_lstaddback.c \
 					MANDATORY/LIST/ft_lstaddfront.c \
 					MANDATORY/LIST/ft_lstfree.c \
@@ -31,8 +33,7 @@ SRCS_PUSHSWAP := MANDATORY/push_swap.c \
 					MANDATORY/LIST/ft_lstlargest.c \
 					MANDATORY/LIST/ft_lstlast.c \
 					MANDATORY/LIST/ft_lstnew.c \
-					MANDATORY/LIST/ft_lstpos_e.c \
-					MANDATORY/LIST/ft_lstpos_s.c \
+					MANDATORY/LIST/ft_lstindex.c \
 					MANDATORY/LIST/ft_lstprint.c \
 					MANDATORY/LIST/ft_lstsize.c \
 					MANDATORY/LIST/ft_lstsmallest.c
@@ -45,6 +46,16 @@ SRCS_CHECKER := BONUS/checker.c \
 
 CC := cc
 CFLAGS := -Wall -Wextra -Werror
+
+# Efficiency test
+N ?= 5
+TESTS ?= 100
+
+GREEN = \033[0;32m
+RED = \033[0;31m
+YELLOW = \033[1;33m
+BLUE = \033[0;34m
+RESET = \033[0m
 
 all: $(PUSHSWAP) $(CHECKER)
 
@@ -74,3 +85,43 @@ re: fclean all
 rep:
 	rm -f push_swap
 	make basic
+
+# effi:
+# 	@echo "$(YELLOW)   Testing push_swap efficiency with N=$(N) up to $(TESTS) tests...$(RESET)"
+# 	@> instr.txt
+# 	@i=0; \
+# 	while [ $$i -lt $(TESTS) ]; do \
+# 	ARG=$$(shuf -i 0-1000 -n $(N) | xargs); \
+# 	COUNT=$$(./push_swap $$ARG | wc -l); \
+# 	echo $$COUNT >> instr.txt; \
+# 	i=$$((i+1)); \
+# 	done
+# 	@MIN=$$(sort -n instr.txt | head -1); \
+# 	MAX=$$(sort -n instr.txt | tail -1); \
+# 	AVG=$$(awk '{ total += $$1; count++ } END { if (count > 0) printf("%.2f", total/count); }' instr.txt); \
+# 	echo "$(GREEN)   Average : $$AVG$(RESET)"; \
+# 	echo "$(BLUE)   Minimum : $$MIN$(RESET)"; \
+# 	echo "$(RED)   Maximum : $$MAX$(RESET)";
+# 	@rm -f instr.txt
+
+effi:
+	@echo "$(YELLOW)   Testing push_swap efficiency with N=$(N) up to $(TESTS) tests...$(RESET)"
+	@> instr.txt
+	@i=0; \
+	while [ $$i -lt $(TESTS) ]; do \
+		ARG=$$(shuf -i 0-1000 -n $(N) | xargs); \
+		COUNT=$$(./push_swap $$ARG | wc -l); \
+		echo "$$COUNT|$$ARG" >> instr.txt; \
+		i=$$((i+1)); \
+	done
+	@MIN_LINE=$$(sort -n -t"|" -k1 instr.txt | head -1); \
+	MAX_LINE=$$(sort -n -t"|" -k1 instr.txt | tail -1); \
+	AVG=$$(awk -F"|" '{ total += $$1; count++ } END { if (count > 0) printf("%.2f", total/count); }' instr.txt); \
+	MIN=$$(echo $$MIN_LINE | cut -d"|" -f1); \
+	MAX=$$(echo $$MAX_LINE | cut -d"|" -f1); \
+	MIN_ARG=$$(echo $$MIN_LINE | cut -d"|" -f2-); \
+	MAX_ARG=$$(echo $$MAX_LINE | cut -d"|" -f2-); \
+	echo "$(GREEN)   Average : $$AVG$(RESET)"; \
+	echo "$(BLUE)   Minimum : $$MIN$(RESET) with ARG=$$MIN_ARG"; \
+	echo "$(RED)   Maximum : $$MAX$(RESET) with ARG=$$MAX_ARG";
+	@rm -f instr.txt

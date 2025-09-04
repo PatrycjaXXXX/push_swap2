@@ -6,7 +6,7 @@
 #    By: psmolich <psmolich@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/29 10:11:16 by psmolich          #+#    #+#              #
-#    Updated: 2025/08/25 11:44:06 by psmolich         ###   ########.fr        #
+#    Updated: 2025/09/04 18:44:46 by psmolich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,8 @@ BASIC := ft_atoi.c \
 		ft_tolower.c \
 		ft_toupper.c
 		
-EXTRA := ft_atol.c \
+EXTRA := ft_absint.c \
+		ft_atol.c \
 		ft_strstr.c \
 		ft_strcmp.c \
 		ft_isspace.c \

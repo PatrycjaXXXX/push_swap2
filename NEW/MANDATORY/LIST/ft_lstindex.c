@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstpos_s.c                                      :+:      :+:    :+:   */
+/*   ft_lstindex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psmolich <psmolich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 04:57:03 by psmolich          #+#    #+#             */
-/*   Updated: 2025/08/31 05:14:54 by psmolich         ###   ########.fr       */
+/*   Updated: 2025/09/04 18:35:13 by psmolich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	ft_lstpos_s(t_list *lst, t_list *find)
+int	ft_lstindex(t_list *lst, t_list *node)
 {
-	int	position;
+	int	index;
 
-	position = 0;
-	while (lst != find)
+	index = 0;
+	while (lst != node)
 	{
-		position++;
+		index++;
 		lst = lst->next;
 	}
-	return (position);
+	return (index);
 }

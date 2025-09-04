@@ -6,7 +6,7 @@
 /*   By: psmolich <psmolich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 15:44:41 by psmolich          #+#    #+#             */
-/*   Updated: 2025/08/30 16:26:17 by psmolich         ###   ########.fr       */
+/*   Updated: 2025/08/31 11:37:56 by psmolich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int	record_arg(int ac, char **av, t_list **stack_a)
 		value = 0;
 		if (check_value(arg[i], &value) == FAIL)
 			return (ft_free_arr(arg), FAIL);
-		ft_lstadd_back(stack_a, ft_lstnew(value, i, 0, 0));
+		ft_lstadd_back(stack_a, ft_lstnew(value, i));
 		i++;
 	}
 	ft_free_arr(arg);

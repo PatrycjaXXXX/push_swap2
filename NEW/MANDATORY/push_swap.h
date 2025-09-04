@@ -6,7 +6,7 @@
 /*   By: psmolich <psmolich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 14:44:43 by psmolich          #+#    #+#             */
-/*   Updated: 2025/08/31 05:02:22 by psmolich         ###   ########.fr       */
+/*   Updated: 2025/09/04 19:55:45 by psmolich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@
 typedef struct s_list
 {
 	int				content;
-	int				index_start;
-	int				index_end;
+	int				index;
 	int				moves;
 	struct s_list	*next;
 }	t_list;
 
 int		apply_instr(char *instr, t_list **stack_a, t_list **stack_b);
 int		record_arg(int ac, char **av, t_list **stack_a);
-int		des_to_as(t_list **a, t_list **b, int size_a);
+int		ft_move(char *move, t_list **a, t_list **b);
+void	ft_movetop(t_list **a, t_list **b, t_list *node_a, t_list *node_b);
 int		ft_selectionsort(t_list **a, t_list **b, int size_a);
 int		ft_radixsort(t_list **a, t_list **b, int size_a);
 
@@ -38,10 +38,9 @@ int		ft_lstissorted_as(t_list *lst);
 int		ft_lstissorted_des(t_list *lst);
 t_list	*ft_lstlargest(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
-t_list	*ft_lstnew(int content, int index_start, int index_end, int moves);
-int	ft_lstpos_e(t_list *lst, t_list *find);
-int	ft_lstpos_s(t_list *lst, t_list *find);
-void	ft_lstprint(t_list *lst, char c);
+t_list	*ft_lstnew(int content, int index);
+int		ft_lstindex(t_list *lst, t_list *node);
+void	ft_lstprint(t_list *lst);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstsmallest(t_list *lst);
 
