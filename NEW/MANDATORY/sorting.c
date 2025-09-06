@@ -6,7 +6,7 @@
 /*   By: psmolich <psmolich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 11:21:51 by psmolich          #+#    #+#             */
-/*   Updated: 2025/09/04 19:59:24 by psmolich         ###   ########.fr       */
+/*   Updated: 2025/09/06 10:26:59 by psmolich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,6 @@
 
 int	ft_move(char *move, t_list **a, t_list **b)
 {
-	// ft_printf("A: ");
-	// if (a)
-	// 	ft_lstprint(*a, 'c');
-	// else
-	// 	ft_printf("not moved\n");
-	// ft_printf("B: ");
-	// if (b)
-	// 	ft_lstprint(*b, 'c');
-	// else
-	// 	ft_printf("not moved\n");
-
 	ft_printf("%s", move);
 	return (apply_instr(move, a, b));
 }
@@ -42,7 +31,7 @@ static void	ft_sort3(t_list **a, t_list **b)
 	}
 }
 
-int	ft_selectionsort(t_list **a, t_list **b, int size_a)
+void	ft_selectionsort(t_list **a, t_list **b, int size_a)
 {
 	int		moves;
 	t_list	*min;
@@ -51,12 +40,11 @@ int	ft_selectionsort(t_list **a, t_list **b, int size_a)
 	while (moves--)
 	{
 		min = ft_lstsmallest(*a);
-		if (*a != min)
-			ft_movetop(a, b, min, *b);
-		ft_move("pb\n", a, b);
+		ft_movetop(a, b, min, NULL);
+		if (ft_lstissorted_as(*a) == FAIL)
+			ft_move("pb\n", a, b);
 	}
 	ft_sort3(a, b);
 	while (*b)
 		ft_move("pa\n", a, b);
-	return (SUCCESS);
 }

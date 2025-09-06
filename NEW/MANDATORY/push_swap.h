@@ -6,7 +6,7 @@
 /*   By: psmolich <psmolich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 14:44:43 by psmolich          #+#    #+#             */
-/*   Updated: 2025/09/04 19:55:45 by psmolich         ###   ########.fr       */
+/*   Updated: 2025/09/06 11:16:52 by psmolich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ typedef struct s_list
 {
 	int				content;
 	int				index;
-	int				moves;
+	int				keep_LIS;
+	t_list			*prev_LIS;
 	struct s_list	*next;
 }	t_list;
 
@@ -28,8 +29,9 @@ int		apply_instr(char *instr, t_list **stack_a, t_list **stack_b);
 int		record_arg(int ac, char **av, t_list **stack_a);
 int		ft_move(char *move, t_list **a, t_list **b);
 void	ft_movetop(t_list **a, t_list **b, t_list *node_a, t_list *node_b);
-int		ft_selectionsort(t_list **a, t_list **b, int size_a);
-int		ft_radixsort(t_list **a, t_list **b, int size_a);
+void	ft_selectionsort(t_list **a, t_list **b, int size_a);
+void	ft_radixsort(t_list **a, t_list **b, int size_a);
+void	ft_lis(t_list **a, t_list **b);
 
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);

@@ -17,6 +17,7 @@
 #define FAIL -1
 #define SUCCESS 1
 
+
 static void	optimize_instr(char **instr)
 {
 	ft_strdel(instr, "pb\npa\n");

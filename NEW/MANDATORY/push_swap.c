@@ -6,7 +6,7 @@
 /*   By: psmolich <psmolich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 14:44:40 by psmolich          #+#    #+#             */
-/*   Updated: 2025/09/04 19:40:04 by psmolich         ###   ########.fr       */
+/*   Updated: 2025/09/06 08:58:45 by psmolich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,15 @@ static void	normalize_data(t_list **a, t_list **b, int size_a)
 	}
 }
 
-static int	des_to_as(t_list **a, t_list **b, int size_a)
+static void	des_to_as(t_list **a, t_list **b, int size_a)
 {
 	int	moves;
 
 	if (size_a == 2)
-		return (ft_move("sa\n", a, b));
+	{
+		ft_move("sa\n", a, b);
+		return ;
+	}
 	moves = size_a - 3;
 	while (moves--)
 	{
@@ -55,7 +58,6 @@ static int	des_to_as(t_list **a, t_list **b, int size_a)
 	ft_move("sa\n", a, b);
 	while (*b)
 		ft_move("pa\n", a, b);
-	return (ft_lstissorted_as(*a));
 }
 
 static int	ft_sort(t_list **a, t_list **b)
@@ -65,12 +67,12 @@ static int	ft_sort(t_list **a, t_list **b)
 	size_a = ft_lstsize(*a);
 	normalize_data(a, b, size_a);
 	if (ft_lstissorted_des(*a) == SUCCESS)
-		return (des_to_as(a, b, size_a));
-	// else if (size_a <= 5)
-		ft_selectionsort(a, b, size_a);
+		des_to_as(a, b, size_a);
 	// else
-	// 	ft_radixsort(a, b, size_a);
-	return (SUCCESS);
+		// ft_selectionsort(a, b, size_a);
+	else
+		ft_radixsort(a, b, size_a);
+	return (ft_lstissorted_as(*a));
 }
 
 int	main(int ac, char **av)

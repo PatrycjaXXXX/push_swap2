@@ -1,28 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstindex.c                                      :+:      :+:    :+:   */
+/*   lis.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psmolich <psmolich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/31 04:57:03 by psmolich          #+#    #+#             */
-/*   Updated: 2025/09/06 07:59:39 by psmolich         ###   ########.fr       */
+/*   Created: 2025/09/06 11:20:38 by psmolich          #+#    #+#             */
+/*   Updated: 2025/09/06 11:20:49 by psmolich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
+#include "../libft/libft.h"
 
-int	ft_lstindex(t_list *lst, t_list *node)
-{
-	int	index;
-
-	if (!lst || !node)
-		return (-1);
-	index = 0;
-	while (lst != node)
-	{
-		index++;
-		lst = lst->next;
-	}
-	return (index);
-}

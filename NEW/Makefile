@@ -6,7 +6,7 @@
 #    By: psmolich <psmolich@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/30 14:44:28 by psmolich          #+#    #+#              #
-#    Updated: 2025/09/04 20:03:42 by psmolich         ###   ########.fr        #
+#    Updated: 2025/09/06 11:20:21 by psmolich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,9 @@ SRCS_PUSHSWAP := MANDATORY/push_swap.c \
 					MANDATORY/arguments.c \
 					MANDATORY/instructions.c \
 					MANDATORY/sorting.c \
+					MANDATORY/radix.c \
 					MANDATORY/movetop.c \
-					MANDATORY/calculating.c \
+					MANDATORY/lis.c \
 					MANDATORY/LIST/ft_lstaddback.c \
 					MANDATORY/LIST/ft_lstaddfront.c \
 					MANDATORY/LIST/ft_lstfree.c \
@@ -50,6 +51,7 @@ CFLAGS := -Wall -Wextra -Werror
 # Efficiency test
 N ?= 5
 TESTS ?= 100
+RANGE ?= $(shell expr $(N) - 1)
 
 GREEN = \033[0;32m
 RED = \033[0;31m
@@ -109,7 +111,7 @@ effi:
 	@> instr.txt
 	@i=0; \
 	while [ $$i -lt $(TESTS) ]; do \
-		ARG=$$(shuf -i 0-1000 -n $(N) | xargs); \
+		ARG=$$(shuf -i 0-$(RANGE) -n $(N) | xargs); \
 		COUNT=$$(./push_swap $$ARG | wc -l); \
 		echo "$$COUNT|$$ARG" >> instr.txt; \
 		i=$$((i+1)); \
@@ -125,3 +127,21 @@ effi:
 	echo "$(BLUE)   Minimum : $$MIN$(RESET) with ARG=$$MIN_ARG"; \
 	echo "$(RED)   Maximum : $$MAX$(RESET) with ARG=$$MAX_ARG";
 	@rm -f instr.txt
+
+sort:
+	@for N in $$(seq 4 20) 30 40 50 60 70 80 90 100; do \
+		echo "$(YELLOW)   Testing N=$$N ...$(RESET)"; \
+		> instr.txt; \
+		i=0; \
+		while [ $$i -lt 50 ]; do \
+			ARG=$$(shuf -i 0-$(RANGE) -n $$N | xargs); \
+			COUNT=$$(./push_swap $$ARG | wc -l); \
+			echo "$$COUNT|$$ARG" >> instr.txt; \
+			i=$$((i+1)); \
+		done; \
+		MAX_LINE=$$(sort -n -t"|" -k1 instr.txt | tail -1); \
+		MAX=$$(echo $$MAX_LINE | cut -d"|" -f1); \
+		MAX_ARG=$$(echo $$MAX_LINE | cut -d"|" -f2-); \
+		echo "$(RED)   MAX for N=$$N : $$MAX$(RESET) with ARG=$$MAX_ARG"; \
+		rm -f instr.txt; \
+	done
